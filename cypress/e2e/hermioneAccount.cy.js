@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 /// <reference types='cypress' />
-
+const { assert } = require('chai');
 describe('Bank app of Hermione Granger', () => {
   const depositAmount = faker.number.int({ min: 500, max: 10000 });
   const withdrawAmount = faker.number.int({ min: 50, max: 5000 });
@@ -84,7 +84,7 @@ describe('Bank app of Hermione Granger', () => {
         const other = options.find(
           (opt) => opt.value !== current && opt.value !== '');
 
-        expect(other, 'інший акаунт має бути знайдений').to.exist();
+        assert.exists(other, 'інший акаунт має бути знайдений');
 
         const otherAccount = other.value;
         cy.log(`Перемикаємось на інший акаунт: ${otherAccount}`);
